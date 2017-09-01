@@ -9,6 +9,7 @@ after_success:
 addons:
   ssh_known_hosts: jbosswildfly-web2msg.rhcloud.com
 before_deploy:
+- cd ..
 - openssl aes-256-cbc -K $encrypted_98561ba32456_key -iv $encrypted_98561ba32456_iv
   -in id_rsa.enc -out /tmp/id_rsa -d
 - eval "$(ssh-agent -s)"
