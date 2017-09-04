@@ -5,7 +5,7 @@ script:
 - cd simple-test
 - mvn clean verify
 after_success:
-- mvn javadoc:javadoc
+- test $TRAVIS_BRANCH = "master" && test $TRAVIS_PULL_REQUEST = "false" && mvn javadoc:javadoc
 addons:
   ssh_known_hosts: jbosswildfly-web2msg.rhcloud.com
 before_deploy:
@@ -21,3 +21,4 @@ deploy:
   script: rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/simple-test/target/site 5731f51e89f5cfe33900001c@jbosswildfly-web2msg.rhcloud.com:/tmp
   on:
     branch: master
+    condition: $TRAVIS_PULL_REQUEST == "false"
