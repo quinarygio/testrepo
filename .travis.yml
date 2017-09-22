@@ -15,4 +15,5 @@ before_install:
 - ssh-add /tmp/id_rsa
 
 after_success:
-- test $TRAVIS_BRANCH = "master" && test $TRAVIS_PULL_REQUEST = "false" && mvn javadoc:javadoc && rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/simple-test/target/site $JAVADOC_USER@jbosswildfly-web2msg.rhcloud.com:/tmp
+- sshfs 
+- test $TRAVIS_BRANCH = "master" && test $TRAVIS_PULL_REQUEST = "false" && mvn javadoc:javadoc && rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/simple-test/target/site 5731f51e89f5cfe33900001c@jbosswildfly-web2msg.rhcloud.com:/tmp
