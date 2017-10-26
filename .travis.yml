@@ -24,5 +24,5 @@ before_install:
 - ssh-add /tmp/id_rsa
 
 after_success:
-- test $TRAVIS_BRANCH = "master" && test $TRAVIS_PULL_REQUEST = "false" && mvn javadoc:javadoc && cd $TRAVIS_BUILD_DIR/simple-test/target/site/apidocs && zip -r /tmp/javadoc4.zip . &&  sftp 5731f51e89f5cfe33900001c@jbosswildfly-web2msg.rhcloud.com:/tmp <<< $'put /tmp/javadoc4.zip'  
-- test $TRAVIS_BRANCH = "master" && test $TRAVIS_PULL_REQUEST = "false" && cd powsybl/powsybl-core && mvn javadoc:javadoc && cd target/site/apidocs && zip -r /tmp/powsybl-core-javadoc.zip . && sftp $JAVADOC_USER@sftp.dc0.gpaas.net:vhosts/www.itesla-pst.org/htdocs/javadoc/powsybl-core <<< $'put /tmp/powsybl-core-javadoc.zip javadoc.zip'
+- test $TRAVIS_BRANCH = "master" && test $TRAVIS_PULL_REQUEST = "false" && mvn javadoc:javadoc && cd $TRAVIS_BUILD_DIR/simple-test/target/site/apidocs && zip -r /tmp/javadoc4.zip . && popd
+- test $TRAVIS_BRANCH = "master" && test $TRAVIS_PULL_REQUEST = "false" && cd $TRAVIS_BUILD_DIR/powsybl/powsybl-core && mvn javadoc:javadoc && cd target/site/apidocs && zip -r /tmp/powsybl-core-javadoc.zip . 
